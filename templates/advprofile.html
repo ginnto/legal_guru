@@ -1,0 +1,65 @@
+{% extends "advbase.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="text-center mb-5">
+        <h4 class="text-primary font-weight-bold">Welcome, {{ advocate.user.first_name }} {{ advocate.user.last_name }}</h4>
+        <h5 class="font-weight-light">Specialization: {{ advocate.specialization }}</h5>
+    </div>
+    <div class="row">
+        <!-- Advocate Details -->
+        <div class="col-md-6 mb-4">
+            <div class="card shadow-sm">
+                <div class="card-header bg-primary text-white">
+                    Advocate Details
+                </div>
+                <div class="card-body">
+                    <p><strong>Office Name:</strong> {{ advocate.officename }}</p>
+                    <p><strong>Place:</strong> {{ advocate.place }}</p>
+                    <p><strong>State:</strong> {{ advocate.state }}</p>
+                    <p><strong>District:</strong> {{ advocate.district }}</p>
+                    <p><strong>Post Office:</strong> {{ advocate.postoffice }}</p>
+                    <p><strong>Pincode:</strong> {{ advocate.pincode }}</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact and Additional Info -->
+        <div class="col-md-6 mb-4">
+            <div class="card shadow-sm">
+                <div class="card-header bg-secondary text-white">
+                    Contact and Additional Info
+                </div>
+                <div class="card-body">
+                    <p><strong>Contact Number:</strong> {{ advocate.contactno }}</p>
+                    <p><strong>Aadhar Number:</strong> {{ advocate.aadharno }}</p>
+                    <p><strong>Email:</strong> {{ advocate.user.email }}</p>
+                    <p><strong>Profile Picture:</strong></p>
+                    <img src="{{ advocate.image.url }}" alt="Profile Picture" class="img-thumbnail" style="width: 150px; height: 150px;">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Action Links -->
+    <div class="row mt-4">
+        <div class="col-md-4">
+            <div class="card shadow-sm bg-secondary text-white">
+                <div class="card-body text-center">
+                    <h4 class="card-title">View Current Cases</h4>
+                    <a href="" class="btn btn-primary">View Cases</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card shadow-sm bg-secondary text-white">
+                <div class="card-body text-center">
+                    <h4 class="card-title">View Requests</h4>
+                    <a href="" class="btn btn-primary">View Requests</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

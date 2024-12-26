@@ -1,0 +1,41 @@
+/* Full viewport with background image */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+.background-wrapper {
+background-image: url("/static/img/bg1.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 100vh; /* Full viewport height */
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.reg {
+  text-align: center;
+  margin: auto;
+  width: 50%;
+  border: 3px solid green;
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 10px;
+}
+
+h2 {
+  text-align: center;
+  font-size: 30px;
+  color: #EED3B1;
+}
+
+label {
+  font-size: 16px;
+  color: #89A8B2;
+}

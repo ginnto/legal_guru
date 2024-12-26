@@ -1,0 +1,38 @@
+{% extends "advbase.html" %}
+{% load static %}
+
+
+{% block content %}
+<div class="container py-5">
+    <div class="d-flex flex-column text-center mb-5">
+        <h4 class="text-primary font-weight-bold">Advocate Dashboard</h4>
+        <h4 class="display-4 font-weight-bold">Manage Your Work Efficiently</h4>
+    </div>
+    <div class="row">
+        <div class="col-md-4 mb-4">
+            <div class="card shadow-sm bg-secondary text-white">
+                <div class="card-body text-center">
+                    <h4 class="card-title">View Current Cases</h4>
+                    <a href="case_info.php" class="btn btn-primary">View Cases</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card shadow-sm bg-secondary text-white">
+                <div class="card-body text-center">
+                    <h4 class="card-title">View Requests</h4>
+                    <a href="case_request.php" class="btn btn-primary">View Requests</a>
+                </div>
+            </div>
+        </div>
+<!--        <div class="col-md-4 mb-4">-->
+<!--            <div class="card shadow-sm bg-secondary text-white">-->
+<!--                <div class="card-body text-center">-->
+<!--                    <h4 class="card-title">Manage Chat</h4>-->
+<!--                    <a href="chatlist.php" class="btn btn-primary">Chat</a>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+    </div>
+</div>
+{% endblock %}

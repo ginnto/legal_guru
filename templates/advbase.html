@@ -1,0 +1,83 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Advocate Dashboard</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <link href="../temp/img/favicon.ico" rel="icon">
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="{% static 'css/style.min.css' %}" rel="stylesheet">
+</head>
+
+<body class="bg-white">
+    <!-- Navbar Start -->
+    <div class="container-fluid p-0 nav-bar">
+        <nav class="navbar navbar-expand-lg bg-none navbar-dark py-3">
+            <a href="#" class="navbar-brand">
+                <h3 class="m-0 display-4 font-weight-bold text-uppercase text-white">LEGAL GURU</h3>
+            </a>
+            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                <div class="navbar-nav ml-auto p-4 bg-secondary">
+                    <a href="/" class="nav-item nav-link">HOME</a>
+                    <a href="{% url 'case_list' %}" class="nav-item nav-link">CURRENT CASES</a>
+                    <a href="{% url 'case_list' %}" class="nav-item nav-link">REQUEST</a>
+                    <a href="chatlist.php" class="nav-item nav-link">CHAT</a>
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">MY ACCOUNT</a>
+                        <div class="dropdown-menu text-capitalize">
+                            <a href="{% url 'advprofile' %}" class="dropdown-item">Profile</a>
+<!--                            <a href="changepassword.php" class="dropdown-item">Change Password</a>-->
+                            <a href="{% url 'advlogout' %}" class="dropdown-item">Logout</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <!-- Navbar End -->
+
+
+    <div class="container py-4">
+        {% block content %}
+
+        {% endblock %}
+    </div>
+
+
+    <!-- Footer Start -->
+    <div class="footer container-fluid mt-5 py-5 px-sm-3 px-md-5 text-white">
+        <div class="row pt-5">
+            <div class="col-lg-3 col-md-6 mb-5">
+                <h4 class="text-primary mb-4">Get In Touch</h4>
+                <p><i class="fa fa-map-marker-alt mr-2"></i>123 Street, Eranakulam, Kerala</p>
+                <p><i class="fa fa-phone-alt mr-2"></i>+91 9874563210</p>
+                <p><i class="fa fa-envelope mr-2"></i>legalguru123@gmail.com</p>
+                <div class="d-flex justify-content-start mt-4">
+                    <a class="btn btn-outline-light rounded-circle text-center mr-2 px-0" style="width: 40px; height: 40px;" href="#"><i class="fab fa-twitter"></i></a>
+                    <a class="btn btn-outline-light rounded-circle text-center mr-2 px-0" style="width: 40px; height: 40px;" href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a class="btn btn-outline-light rounded-circle text-center mr-2 px-0" style="width: 40px; height: 40px;" href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a class="btn btn-outline-light rounded-circle text-center mr-2 px-0" style="width: 40px; height: 40px;" href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer End -->
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="../temp/lib/easing/easing.min.js"></script>
+    <script src="../temp/lib/waypoints/waypoints.min.js"></script>
+    <!-- Template Javascript -->
+    <script src="../temp/js/main.js"></script>
+</body>
+
+</html>
