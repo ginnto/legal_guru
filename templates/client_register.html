@@ -86,6 +86,8 @@
             }
         }
     </style>
+
+
 </head>
 <body>
     <div class="container">
@@ -186,5 +188,14 @@
             <button type="submit">Register</button>
         </form>
     </div>
+
+  {% if messages %}
+        <script type="text/javascript">
+            {% for message in messages %}
+                alert("{{ message }}");
+            {% endfor %}
+        </script>
+    {% endif %}
+
 </body>
 </html>

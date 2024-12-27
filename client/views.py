@@ -21,6 +21,8 @@ def clientregister(request):
         aadharno = request.POST.get('aadharno')
         image = request.FILES.get('image')
 
+        print(password)
+
         if password != confirm_password:
             messages.error(request, "Passwords do not match.")
             return redirect("clientregister")
@@ -40,6 +42,7 @@ def clientregister(request):
             password=password,
             email=email
         )
+        print(user)
         user.save()
 
         client = ClientRegistration.objects.create(

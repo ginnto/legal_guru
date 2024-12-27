@@ -11,6 +11,7 @@ class ClientRegistration(models.Model):
     district = models.CharField(max_length=20)
     postoffice = models.CharField(max_length=20)
     pin = models.CharField(max_length=10)
+    type= models.CharField(default='client',max_length=10)
     email = models.EmailField(max_length=50)
     contactno = models.CharField(max_length=12)
     image = models.ImageField(upload_to='client_images/', null=True, blank=True)  # Assuming images will be uploaded
