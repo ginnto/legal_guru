@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Client Registration</title>
-
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -13,7 +12,6 @@
             padding: 0;
             color: #fff;
         }
-
         .container {
             width: 100%;
             max-width: 900px; /* Max-width of the form container */
@@ -23,7 +21,6 @@
             border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
-
         h2 {
             text-align: center;
             color: #ff4d4d; /* Red color for the heading */
@@ -96,10 +93,16 @@
         <form action="{% url 'clientregister' %}" method="post" enctype="multipart/form-data">
             {% csrf_token %}
 
-            <!-- Full Name -->
+            <!-- First Name -->
             <div class="form-group">
-                <label for="name">Full Name</label>
-                <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+                <label for="first_name">First Name</label>
+                <input type="text" id="first_name" name="first_name" placeholder="Enter your first name" required>
+            </div>
+
+            <!-- Last Name -->
+            <div class="form-group">
+                <label for="last_name">Last Name</label>
+                <input type="text" id="last_name" name="last_name" placeholder="Enter your last name" required>
             </div>
 
             <!-- Gender -->
@@ -166,6 +169,18 @@
             <div class="form-group">
                 <label for="aadharno">Aadhar Number</label>
                 <input type="text" id="aadharno" name="aadharno" placeholder="Enter your Aadhar number" maxlength="12" required>
+            </div>
+
+            <!-- Password -->
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="Enter your password" required>
+            </div>
+
+            <!-- Confirm Password -->
+            <div class="form-group">
+                <label for="confirm_password">Confirm Password</label>
+                <input type="password" id="confirm_password" name="confirm_password" placeholder="Confirm your password" required>
             </div>
 
             <button type="submit">Register</button>
