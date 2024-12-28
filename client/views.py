@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth.models import User
+
 from django.contrib import messages
+from django.contrib.auth.models import User,auth
+
 from .models import ClientRegistration  # Import ClientRegistration model
 
 def clientregister(request):
@@ -65,6 +67,27 @@ def clientregister(request):
         return redirect('/')
     else:
         return render(request, 'client_register.html')
+
+def clientlogin(request):
+    if request.method == 'POST':
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+
+        # Authenticate the user
+        user = auth.authenticate(request, username=email, password=password)
+
+        if user is not None:
+            # If authentication is successful, log the user in
+            auth.login(request, user)
+            messages.success(request, "Login successful!")
+            return redirect('clientdash')  # Redirect to the client dashboard after login
+        else:
+            # If authentication fails
+            messages.error(request, "Invalid email or password.")
+            return redirect('userlogin')  # Redirect back to login page if authentication fails
+    else:
+        return render(request, 'client_login.html')
+
 
 def clientdash(request):
     return render(request, 'clientdash.html')
