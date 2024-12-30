@@ -1,0 +1,49 @@
+{% extends "clientbase.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="d-flex flex-column text-center mb-5">
+        <h4 class="text-primary font-weight-bold">Submit New Case Request</h4>
+        <h4 class="display-4 font-weight-bold">Provide Your Details</h4>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-md-8 mb-4">
+            <div class="card shadow-sm bg-secondary text-white">
+                <div class="card-body">
+                    <form method="post" novalidate>
+                        <div class="form-group">
+                            <label for="lawyer">Select Lawyer</label>
+                            <select class="form-control" id="lawyer" name="lawyer">
+                                <option value="" selected disabled>Choose a lawyer</option>
+                                <option value="1">Lawyer 1</option>
+                                <option value="2">Lawyer 2</option>
+                                <option value="3">Lawyer 3</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="name">Your Name</label>
+                            <input type="text" class="form-control" id="name" name="name" placeholder="Enter your name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Your Email</label>
+                            <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="text" class="form-control" id="phone" name="phone" placeholder="Enter your phone number" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="case_des">Case Description</label>
+                            <textarea class="form-control" id="case_des" name="case_des" rows="4" placeholder="Describe your case" required></textarea>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary btn-lg">Submit Request</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

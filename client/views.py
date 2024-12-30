@@ -100,6 +100,8 @@ def clientlogin(request):
     else:
         return render(request, 'client_login.html')
 
+def clientcase(request):
+    return render(request, 'clientcase.html')
 
 def clientdash(request):
     return render(request, 'clientdash.html')
