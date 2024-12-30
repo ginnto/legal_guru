@@ -1,10 +1,37 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "clientbase.html" %}
+{% load static %}
 
-</body>
-</html>
+{% block content %}
+<div class="container py-5">
+    <div class="d-flex flex-column text-center mb-5">
+        <h4 class="text-primary font-weight-bold">Client Dashboard</h4>
+        <h4 class="display-4 font-weight-bold">Manage Your Cases and Requests</h4>
+    </div>
+    <div class="row">
+        <div class="col-md-4 mb-4">
+            <div class="card shadow-sm bg-secondary text-white">
+                <div class="card-body text-center">
+                    <h4 class="card-title">View My Cases</h4>
+                    <a href="client_cases.php" class="btn btn-primary">View Cases</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card shadow-sm bg-secondary text-white">
+                <div class="card-body text-center">
+                    <h4 class="card-title">Submit New Request</h4>
+                    <a href="new_request.php" class="btn btn-primary">Submit Request</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card shadow-sm bg-secondary text-white">
+                <div class="card-body text-center">
+                    <h4 class="card-title">View Messages</h4>
+                    <a href="messages.php" class="btn btn-primary">Check Messages</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

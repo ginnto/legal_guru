@@ -1,9 +1,7 @@
 from django.shortcuts import render, redirect
-
 from django.contrib import messages
 from django.contrib.auth.models import User,auth
-
-from .models import ClientRegistration  # Import ClientRegistration model
+from .models import ClientRegistration
 
 def clientregister(request):
     if request.method == "POST":
@@ -68,6 +66,8 @@ def clientregister(request):
     else:
         return render(request, 'client_register.html')
 
+
+
 def clientlogin(request):
     if request.method == 'POST':
         email = request.POST.get('email')
@@ -77,14 +77,26 @@ def clientlogin(request):
         user = auth.authenticate(request, username=email, password=password)
 
         if user is not None:
-            # If authentication is successful, log the user in
-            auth.login(request, user)
-            messages.success(request, "Login successful!")
-            return redirect('clientdash')  # Redirect to the client dashboard after login
+            # Check if the authenticated user is of type 'client'
+            try:
+                client = ClientRegistration.objects.get(user=user)
+                if client.type == 'client':
+                    # User is a client, log them in
+                    auth.login(request, user)
+                    messages.success(request, "Login successful!")
+                    return redirect('clientdash')
+                else:
+                    # User is not a client
+                    messages.error(request, "You are not authorized to log in as a client.")
+                    return redirect('userlogin')
+            except ClientRegistration.DoesNotExist:
+                # ClientRegistration not found, handle it (e.g., show error)
+                messages.error(request, "Client registration not found.")
+                return redirect('userlogin')
         else:
-            # If authentication fails
+            # Invalid email or password
             messages.error(request, "Invalid email or password.")
-            return redirect('userlogin')  # Redirect back to login page if authentication fails
+            return redirect('userlogin')
     else:
         return render(request, 'client_login.html')
 
