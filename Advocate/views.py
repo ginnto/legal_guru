@@ -8,12 +8,11 @@ from home.models import *
 
 def advregister(request):
     if request.method == "POST":
-
         FirstName = request.POST.get('FirstName')
         LastName = request.POST.get('LastName')
         password = request.POST.get('password')
         email = request.POST.get('email')
-        specialization = request.POST.get('specialization')
+        specialization_id = request.POST.get('specialization')
         officename = request.POST.get('officename')
         place = request.POST.get('place')
         state = request.POST.get('state')
@@ -24,37 +23,49 @@ def advregister(request):
         aadharno = request.POST.get('aadharno')
         image = request.FILES.get('image')
 
-        # Password validation and user creation
-        # if User.objects.filter(username=username).exists():
-        #     messages.error(request, "Username is already taken.")
-        #     return redirect("register_advocate")
+        # Check if specialization exists
+        try:
+            specialization = specializations.objects.get(id=specialization_id)
+        except specializations.DoesNotExist:
+            messages.error(request, "Invalid specialization selected.")
+            return redirect("advregister")
 
+        # Check if email already exists
         if User.objects.filter(email=email).exists():
             messages.error(request, "Email is already in use.")
             return redirect("advregister")
 
-        else:
-            user = User.objects.create_user(first_name=FirstName,last_name = LastName,username=FirstName,password=password, email=email)
-            user.save()
+        # Create User and Advocate
+        user = User.objects.create_user(
+            first_name=FirstName,
+            last_name=LastName,
+            username=FirstName,
+            password=password,
+            email=email
+        )
+        user.save()
 
-            advocate = AdvocateRegistration.objects.create(
-                user=user,
-                specialization=specialization,
-                officename=officename,
-                place=place,
-                state=state,
-                district=district,
-                postoffice=postoffice,
-                pincode=pincode,
-                contactno=contactno,
-                image=image,
-                aadharno=aadharno,
-            )
-            advocate.save()
-            messages.success(request, "Registration successful!")
-            return redirect('/')
+        advocate = AdvocateRegistration.objects.create(
+            user=user,
+            specialization=specialization,
+            officename=officename,
+            place=place,
+            state=state,
+            district=district,
+            postoffice=postoffice,
+            pincode=pincode,
+            contactno=contactno,
+            image=image,
+            aadharno=aadharno,
+        )
+        advocate.save()
+
+        messages.success(request, "Registration successful!")
+        return redirect('/')
     else:
-        return render(request, 'adv_register.html')
+        # Pass specializations to the template
+        specializations_list = specializations.objects.all()
+        return render(request, 'adv_register.html', {'specializations': specializations_list})
 
 def advlogin(request):
     if request.method == 'POST':

@@ -1,133 +1,181 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Advocate Registration</title>
+{% extends "base.html" %}
+{% load static %}
 
-    <style>
-        body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f9;
-    margin: 0;
-    padding: 0;
-}
-
-.container {
-    width: 100%;
-    max-width: 500px;
-    margin: 50px auto;
-    background: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-h2 {
-    text-align: center;
-    color: #333;
-}
-
-form {
-    display: flex;
-    flex-direction: column;
-}
-
-label {
-    margin-bottom: 5px;
-    color: #555;
-}
-
-input[type="text"],
-input[type="password"],
-input[type="email"],
-input[type="file"] {
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-
-input[type="text"]:focus,
-input[type="password"]:focus,
-input[type="email"]:focus {
-    border-color: #007BFF;
-    outline: none;
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
-}
-
-button {
-    padding: 10px;
-    background: #007BFF;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-}
-
-button:hover {
-    background: #0056b3;
-}
-
-@media (max-width: 600px) {
+{% block content %}
+<style>
     .container {
-        padding: 15px;
+        width: 100%;
+        max-width: 900px;
+        margin: 50px auto;
+        background: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
-}
 
-    </style>
-</head>
-<body>
-    <div class="container">
-        <h2>Register as an Advocate</h2>
-        <form action="advregister" method="post" enctype="multipart/form-data">
-           {% csrf_token %}
-            <label for="First Name">First Name</label>
-            <input type="text" id="First Name" name="FirstName" placeholder="Enter your First Name" required>
+    h2 {
+        text-align: center;
+        color: #333;
+        margin-bottom: 20px;
+    }
 
+    form {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+    .form-group {
+        flex: 1 1 calc(50% - 20px); /* Take 50% width with spacing */
+        display: flex;
+        flex-direction: column;
+    }
+
+    label {
+        margin-bottom: 5px;
+        color: #555;
+        font-weight: bold;
+    }
+
+    input[type="text"],
+    input[type="password"],
+    input[type="email"],
+    input[type="file"],
+    select {
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 14px;
+    }
+
+    input[type="text"]:focus,
+    input[type="password"]:focus,
+    input[type="email"]:focus,
+    select:focus {
+        border-color: #007BFF;
+        outline: none;
+        box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    }
+
+    button {
+        width: 100%;
+        padding: 10px;
+        background: #007BFF;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+        margin-top: 20px;
+    }
+
+    button:hover {
+        background: #0056b3;
+    }
+
+    @media (max-width: 600px) {
+        .form-group {
+            flex: 1 1 100%; /* Full width for small screens */
+        }
+    }
+</style>
+
+<div class="container">
+    <h2>Register as an Advocate</h2>
+    <form action="advregister" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <!-- First Name -->
+        <div class="form-group">
+            <label for="FirstName">First Name</label>
+            <input type="text" id="FirstName" name="FirstName" placeholder="Enter your First Name" required>
+        </div>
+
+        <!-- Last Name -->
+        <div class="form-group">
             <label for="LastName">Last Name</label>
             <input type="text" id="LastName" name="LastName" placeholder="Enter your Last Name" required>
+        </div>
 
+        <!-- Password -->
+        <div class="form-group">
             <label for="password">Password</label>
             <input type="password" id="password" name="password" placeholder="Enter your password" required>
+        </div>
 
+        <!-- Email -->
+        <div class="form-group">
             <label for="email">Email</label>
             <input type="email" id="email" name="email" placeholder="Enter your email" required>
+        </div>
 
+        <!-- Specialization -->
+        <div class="form-group">
             <label for="specialization">Specialization</label>
-            <input type="text" id="specialization" name="specialization" placeholder="Enter your specialization" required>
+            <select id="specialization" name="specialization" required>
+                <option value="">Select Specialization</option>
+                {% for specialization in specializations %}
+                    <option value="{{ specialization.id }}">{{ specialization.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
 
+        <!-- Office Name -->
+        <div class="form-group">
             <label for="officename">Office Name</label>
             <input type="text" id="officename" name="officename" placeholder="Enter your office name" required>
+        </div>
 
+        <!-- Place -->
+        <div class="form-group">
             <label for="place">Place</label>
             <input type="text" id="place" name="place" placeholder="Enter your place" required>
+        </div>
 
+        <!-- State -->
+        <div class="form-group">
             <label for="state">State</label>
             <input type="text" id="state" name="state" placeholder="Enter your state" required>
+        </div>
 
+        <!-- District -->
+        <div class="form-group">
             <label for="district">District</label>
             <input type="text" id="district" name="district" placeholder="Enter your district" required>
+        </div>
 
+        <!-- Post Office -->
+        <div class="form-group">
             <label for="postoffice">Post Office</label>
             <input type="text" id="postoffice" name="postoffice" placeholder="Enter your post office" required>
+        </div>
 
+        <!-- Pincode -->
+        <div class="form-group">
             <label for="pincode">Pincode</label>
             <input type="text" id="pincode" name="pincode" placeholder="Enter your pincode" maxlength="6" required>
+        </div>
 
+        <!-- Contact Number -->
+        <div class="form-group">
             <label for="contactno">Contact Number</label>
             <input type="text" id="contactno" name="contactno" placeholder="Enter your contact number" maxlength="10" required>
+        </div>
 
+        <!-- Profile Image -->
+        <div class="form-group">
             <label for="image">Profile Image</label>
             <input type="file" id="image" name="image" required>
+        </div>
 
+        <!-- Aadhar Number -->
+        <div class="form-group">
             <label for="aadharno">Aadhar Number</label>
             <input type="text" id="aadharno" name="aadharno" placeholder="Enter your Aadhar number" maxlength="12" required>
+        </div>
 
-            <button type="submit">Register</button>
-        </form>
-    </div>
-</body>
-</html>
-
+        <!-- Submit Button -->
+        <button type="submit">Register</button>
+    </form>
+</div>
+{% endblock %}

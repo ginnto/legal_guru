@@ -1,16 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
    <style>
-     body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f9;
-    margin: 0;
-    padding: 0;
-}
+
 
 .login-container {
     width: 100%;
@@ -91,8 +85,11 @@ a:hover {
 }
 
    </style>
-</head>
-<body>
+
+<br>
+<br>
+<br>
+<br>
     <div class="login-container">
         <h2>Login</h2>
         <form action="advlogin" method="post">
@@ -107,5 +104,6 @@ a:hover {
         </form>
         <p>Don't have an account? <a href="/register">Register here</a></p>
     </div>
-</body>
-</html>
+
+
+{% endblock %}
