@@ -26,15 +26,17 @@
             </button>
             <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                 <div class="navbar-nav ml-auto p-4 bg-secondary">
-                    <a href="/" class="nav-item nav-link">HOME</a>
+                    <a href="{% url 'clientdash' %}" class="nav-item nav-link">HOME</a>
                     <a href="{% url 'clientcaselist' %}" class="nav-item nav-link">MY CASES</a>
                     <a href="{% url 'clientcase' %}" class="nav-item nav-link">NEW REQUEST</a>
+                    <a href="{% url 'submit_feedback' %}" class="nav-item nav-link">FEEDBACK</a>
+                    <a href="{% url 'feedback_list' %}" class="nav-item nav-link">FEEDBACK LIST</a>
                     <a href="#" class="nav-item nav-link">MESSAGES</a>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">MY ACCOUNT</a>
                         <div class="dropdown-menu text-capitalize">
                             <a href="{% url 'clientprofile' %} " class="dropdown-item">Profile</a>
-                            <a href="#" class="dropdown-item">Logout</a>
+                            <a href="{% url 'logout' %}" class="dropdown-item">Logout</a>
                         </div>
                     </div>
                 </div>

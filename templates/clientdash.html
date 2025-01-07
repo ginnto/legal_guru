@@ -12,15 +12,16 @@
             <div class="card shadow-sm bg-secondary text-white">
                 <div class="card-body text-center">
                     <h4 class="card-title">View My Cases</h4>
-                    <a href="client_cases.php" class="btn btn-primary">View Cases</a>
+                    <a href="{% url 'clientcaselist' %}" class="btn btn-primary">View Cases</a>
                 </div>
             </div>
         </div>
+
         <div class="col-md-4 mb-4">
             <div class="card shadow-sm bg-secondary text-white">
                 <div class="card-body text-center">
                     <h4 class="card-title">Submit New Request</h4>
-                    <a href="new_request.php" class="btn btn-primary">Submit Request</a>
+                    <a href="{% url 'clientcase' %}" class="btn btn-primary">Submit Request</a>
                 </div>
             </div>
         </div>
@@ -31,6 +32,26 @@
                     <a href="messages.php" class="btn btn-primary">Check Messages</a>
                 </div>
             </div>
+        </div>
+    </div>
+
+    <!-- Advocate List Section -->
+    <div class="mt-5">
+        <h4 class="text-center text-primary font-weight-bold">Our Advocates</h4>
+        <div class="row">
+            {% for advocate in advocates %}
+            <div class="col-md-4 mb-4">
+                <div class="card shadow-sm">
+                    <img src="{{ advocate.image.url}}" class="card-img-top" alt="{{ advocate.name }}">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">{{ advocate.user.first_name }}</h5>
+                        <p class="card-text"><b> Specialization: </b>  {{ advocate.specialization }}</p>
+                        <p class="card-text">{{ advocate.contactno }}</p>
+                        <p class="card-text">{{ advocate.user.email }}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
         </div>
     </div>
 </div>

@@ -1,7 +1,10 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth.models import User,auth
-from .models import ClientRegistration
+
+from .forms import FeedbackForm
+from .models import ClientRegistration, Feedback
+from django.contrib.auth.decorators import login_required
 from Advocate.models import *
 from home.models import *
 
@@ -139,4 +142,28 @@ def clientcaselist(request):
     return render(request, 'clientcaselist.html', {'cases': cases})
 
 def clientdash(request):
-    return render(request, 'clientdash.html')
+    advocates = AdvocateRegistration.objects.all()
+    return render(request, 'clientdash.html', {'advocates': advocates})
+
+
+
+
+
+
+@login_required
+def submit_feedback(request):
+    if request.method == 'POST':
+        form = FeedbackForm(request.POST)
+        if form.is_valid():
+            Feedback = form.save(commit=False)
+            Feedback.user = request.user
+            Feedback.save()
+            return redirect('feedback_list')
+    else:
+        form = FeedbackForm()
+    return render(request, 'submit_feedback.html', {'form': form})
+
+@login_required
+def feedback_list(request):
+    feedbacks = Feedback.objects.all().order_by('-created_at')
+    return render(request, 'feedback_list.html', {'feedbacks': feedbacks})

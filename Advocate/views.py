@@ -1,5 +1,5 @@
 
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import User,auth
 from django.contrib import messages
 from .models import AdvocateRegistration
@@ -98,10 +98,27 @@ def advprofile(request):
     advocate = AdvocateRegistration.objects.get(user=request.user)
     return render(request, 'advprofile.html', {'advocate': advocate})
 
+
 def case_list(request):
     advocate = request.user.advocateregistration
     cases = CaseRequest.objects.filter(lawyer=advocate)
+    if request.method == 'POST':
+        req_id = request.POST.get('req_id')
+        new_status = request.POST.get('approval')
+        if new_status in ['Approved', 'Pending', 'Rejected']:
+            case = get_object_or_404(CaseRequest, req_id=req_id,
+                                     lawyer=advocate)  # Ensure case belongs to the logged-in advocate
+            case.approval = new_status
+            case.save()
+            return redirect('case_list')  # Redirect to the same page after update
+
     return render(request, 'advcaselist.html', {'cases': cases})
+
+
+def current_case_list(request):
+    advocate = request.user.advocateregistration
+    cases = CaseRequest.objects.filter(lawyer=advocate, approval='Approved')  # Filter by 'Approved' status
+    return render(request, 'advcurrentcaselist.html', {'cases': cases})
 
 def advlogout(request):
     auth.logout(request)

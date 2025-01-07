@@ -9,4 +9,5 @@ urlpatterns = [
     path('advprofile',views.advprofile,name='advprofile'),
     path('advlogout',views.advlogout,name='advlogout'),
     path('case_list',views.case_list,name='case_list'),
+    path('current_case_list',views.current_case_list,name='current_case_list'),
 ]
