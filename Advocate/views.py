@@ -102,6 +102,9 @@ def advprofile(request):
 def case_list(request):
     advocate = request.user.advocateregistration
     cases = CaseRequest.objects.filter(lawyer=advocate)
+    print(cases)
+
+
     if request.method == 'POST':
         req_id = request.POST.get('req_id')
         new_status = request.POST.get('approval')
@@ -113,6 +116,9 @@ def case_list(request):
             return redirect('case_list')  # Redirect to the same page after update
 
     return render(request, 'advcaselist.html', {'cases': cases})
+def advpaymentlist(request, id):
+    payment = Payment.objects.filter(case_id=id)  # Example of filtering by approval status
+    return render(request, 'advpaymentlist.html', {'payment': payment})
 
 
 def current_case_list(request):

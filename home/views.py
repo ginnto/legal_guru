@@ -8,6 +8,13 @@ from django.contrib import messages
 def index(request):
     return render(request,'index.html')
 
+@login_required
+def chat_list(request):
+    return render(request, 'chat_list.html')
+
+@login_required
+def chat_detail(request):
+    return render(request, 'chat_detail.html')
 
 def logout(request):
     auth.logout(request)

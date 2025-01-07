@@ -1,5 +1,6 @@
 {% extends "advbase.html" %}
 {% load static %}
+{% load template_filters %}
 
 {% block content %}
 <div class="container py-5">
@@ -31,7 +32,16 @@
                     <td>{{ case.phone }}</td>
                     <td>{{ case.case_des }}</td>
                     <td>{{ case.approval }}</td>
-                    <td>{{ case.payment_approval }}</td>
+                    <td>
+                        {% if case.payment_approval == 'Paid' %}
+                       <a href="{% url 'advpaymentlist' case.req_id %}" ><button type="button" class="btn btn-info btn-sm"
+                                 >
+                            Payment Details
+                        </button> </a>
+                        {% else %}
+                        <span>Unpaid</span>
+                        {% endif %}
+                    </td>
                     <td>
                         <select name="approval" class="form-control">
                             <option value="Pending" {% if case.approval == 'Pending' %}selected{% endif %}>Pending</option>
