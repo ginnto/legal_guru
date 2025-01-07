@@ -16,7 +16,8 @@
                 <th>Phone</th>
                 <th>Case Description</th>
                 <th>Approval Status</th>
-                <th>Customer Approval</th>
+                <th>Payment Status</th>
+                <th>Payment Action</th>
             </tr>
         </thead>
         <tbody>
@@ -28,11 +29,21 @@
                 <td>{{ case.phone }}</td>
                 <td>{{ case.case_des }}</td>
                 <td>{{ case.approval }}</td>
-                <td>{{ case.cust_approval }}</td>
+                <td>{{ case.payment_approval }}</td>
+                <td>
+                    {% if case.payment_approval == 'Unpaid' %}
+                    <form method="POST" action="{% url 'update_payment_status' case.req_id %}">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-sm btn-primary mt-2">Mark as Paid</button>
+                    </form>
+                    {% else %}
+                    <button type="button" class="btn btn-sm btn-success mt-2" disabled>Already Paid</button>
+                    {% endif %}
+                </td>
             </tr>
             {% empty %}
             <tr>
-                <td colspan="7" class="text-center">No cases found.</td>
+                <td colspan="8" class="text-center">No cases found.</td>
             </tr>
             {% endfor %}
         </tbody>

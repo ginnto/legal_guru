@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth.models import User,auth
 
-from .forms import FeedbackForm
+from .forms import *
 from .models import ClientRegistration, Feedback
 from django.contrib.auth.decorators import login_required
 from Advocate.models import *
@@ -167,3 +167,29 @@ def submit_feedback(request):
 def feedback_list(request):
     feedbacks = Feedback.objects.all().order_by('-created_at')
     return render(request, 'feedback_list.html', {'feedbacks': feedbacks})
+
+
+def payment_page(request, case_id):
+    case = CaseRequest.objects.get(id=case_id)
+
+    # Only allow payment if the case is approved
+    if case.payment_approval == 'Paid':
+        return redirect('payment_confirmation')  # Redirect to a confirmation page if already paid
+
+    if request.method == 'POST':
+        form = PaymentForm(request.POST)
+        if form.is_valid():
+            payment = form.save(commit=False)
+            payment.user = request.user  # Associate the payment with the logged-in user
+            payment.case = case  # Associate the payment with the selected case
+            payment.save()
+
+            # Update the case's payment status to 'Paid'
+            case.payment_approval = 'Paid'
+            case.save()
+
+            return redirect('payment_confirmation')  # Redirect to a payment confirmation page
+    else:
+        form = PaymentForm()
+
+    return render(request, 'payment_page.html', {'form': form, 'case': case})
