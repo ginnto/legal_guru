@@ -12,13 +12,14 @@
             <div class="card shadow-sm bg-secondary text-white">
                 <div class="card-body">
                     <form method="post" novalidate>
+                        {% csrf_token %}
                         <div class="form-group">
                             <label for="lawyer">Select Lawyer</label>
-                            <select class="form-control" id="lawyer" name="lawyer">
+                            <select class="form-control" id="lawyer" name="lawyer" required>
                                 <option value="" selected disabled>Choose a lawyer</option>
-                                <option value="1">Lawyer 1</option>
-                                <option value="2">Lawyer 2</option>
-                                <option value="3">Lawyer 3</option>
+                                {% for advocate in advocates %}
+                                <option value="{{ advocate.id }}">{{ advocate.user.first_name }} {{ advocate.user.last_name }}</option>
+                                {% endfor %}
                             </select>
                         </div>
                         <div class="form-group">

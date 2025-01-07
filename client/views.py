@@ -1,7 +1,9 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth.models import User,auth
 from .models import ClientRegistration
+from Advocate.models import *
+from home.models import *
 
 def clientregister(request):
     if request.method == "POST":
@@ -100,8 +102,41 @@ def clientlogin(request):
     else:
         return render(request, 'client_login.html')
 
+
 def clientcase(request):
-    return render(request, 'clientcase.html')
+    advocates = AdvocateRegistration.objects.all()  # Fetch all advocates for the dropdown
+
+    if request.method == "POST":
+        lawyer_id = request.POST.get('lawyer')
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        phone = request.POST.get('phone')
+        case_des = request.POST.get('case_des')
+
+        if lawyer_id and name and email and phone and case_des:
+            lawyer = AdvocateRegistration.objects.get(id=lawyer_id)  # Get the selected lawyer
+            # Create a new CaseRequest object
+            CaseRequest.objects.create(
+                lawyer=lawyer,
+                name=name,
+                email=email,
+                phone=phone,
+                case_des=case_des,
+            )
+            messages.success(request, "Your case request has been submitted successfully!")
+            return redirect('clientcase')  # Redirect to the same page or elsewhere
+        else:
+            messages.error(request, "Please fill in all fields correctly!")
+
+    return render(request, 'clientcase.html',{'advocates': advocates})
+
+def clientprofile(request):
+    client = get_object_or_404(ClientRegistration, user=request.user)
+    return render(request, 'clientprofile.html', {'client': client})
+
+def clientcaselist(request):
+    cases = CaseRequest.objects.all()
+    return render(request, 'clientcaselist.html', {'cases': cases})
 
 def clientdash(request):
     return render(request, 'clientdash.html')

@@ -1,0 +1,79 @@
+{% extends "clientbase.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="text-center mb-5">
+        <h4 class="text-primary font-weight-bold">Welcome, {{ client.user.first_name }} {{ client.user.last_name }}</h4>
+        <h5 class="font-weight-light">Client Profile</h5>
+    </div>
+    <div class="row">
+        <!-- Client Details -->
+        <div class="col-md-6 mb-4">
+            <div class="card shadow-sm">
+                <div class="card-header bg-primary text-white">
+                    Client Details
+                </div>
+                <div class="card-body">
+                    <p><strong>Full Name:</strong> {{ client.name }}</p>
+                    <p><strong>Gender:</strong> {{ client.gender }}</p>
+                    <p><strong>House Name:</strong> {{ client.hname }}</p>
+                    <p><strong>Place:</strong> {{ client.place }}</p>
+                    <p><strong>State:</strong> {{ client.state }}</p>
+                    <p><strong>District:</strong> {{ client.district }}</p>
+                    <p><strong>Post Office:</strong> {{ client.postoffice }}</p>
+                    <p><strong>Pincode:</strong> {{ client.pin }}</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact and Additional Info -->
+        <div class="col-md-6 mb-4">
+            <div class="card shadow-sm">
+                <div class="card-header bg-secondary text-white">
+                    Contact and Additional Info
+                </div>
+                <div class="card-body">
+                    <p><strong>Contact Number:</strong> {{ client.contactno }}</p>
+                    <p><strong>Aadhar Number:</strong> {{ client.aadharno }}</p>
+                    <p><strong>Email:</strong> {{ client.email }}</p>
+                    <p><strong>Profile Picture:</strong></p>
+                    {% if client.image %}
+                        <img src="{{ client.image.url }}" alt="Profile Picture" class="img-thumbnail" style="width: 150px; height: 150px;">
+                    {% else %}
+                        <p>No profile picture uploaded.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Action Links -->
+    <div class="row mt-4">
+        <div class="col-md-4">
+            <div class="card shadow-sm bg-secondary text-white">
+                <div class="card-body text-center">
+                    <h4 class="card-title">View My Cases</h4>
+                    <a href="{% url 'clientcase' %}" class="btn btn-primary">View Cases</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card shadow-sm bg-secondary text-white">
+                <div class="card-body text-center">
+                    <h4 class="card-title">View My Requests</h4>
+                    <a href="#" class="btn btn-primary">View Requests</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card shadow-sm bg-secondary text-white">
+                <div class="card-body text-center">
+                    <h4 class="card-title">Edit Profile</h4>
+                    <a href="#" class="btn btn-primary">Edit Profile</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
