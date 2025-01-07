@@ -32,7 +32,7 @@
                 <td>{{ case.payment_approval }}</td>
                 <td>
                     {% if case.payment_approval == 'Unpaid' %}
-                    <form method="POST" action="{% url 'update_payment_status' case.req_id %}">
+                    <form method="POST" action="{% url 'payment_page' case.req_id %}">
                         {% csrf_token %}
                         <button type="submit" class="btn btn-sm btn-primary mt-2">Mark as Paid</button>
                     </form>

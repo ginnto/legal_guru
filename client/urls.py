@@ -10,5 +10,6 @@ urlpatterns = [
     path('clientregister',views.clientregister,name='clientregister'),
     path('submit_feedback/', views.submit_feedback, name='submit_feedback'),
     path('feedback_list/', views.feedback_list, name='feedback_list'),
+    path('payment/<int:case_id>/', views.payment_page, name='payment_page'),
 
 ]

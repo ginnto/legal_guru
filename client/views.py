@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth.models import User,auth
@@ -170,26 +172,34 @@ def feedback_list(request):
 
 
 def payment_page(request, case_id):
-    case = CaseRequest.objects.get(id=case_id)
+    # Fetch the case based on case_id
+    case = get_object_or_404(CaseRequest, req_id=case_id)
 
-    # Only allow payment if the case is approved
-    if case.payment_approval == 'Paid':
-        return redirect('payment_confirmation')  # Redirect to a confirmation page if already paid
-
+    # Check if it's an unpaid case and process the payment
     if request.method == 'POST':
-        form = PaymentForm(request.POST)
-        if form.is_valid():
-            payment = form.save(commit=False)
-            payment.user = request.user  # Associate the payment with the logged-in user
-            payment.case = case  # Associate the payment with the selected case
-            payment.save()
+        # Fetch payment data from the form
+        account_number = request.POST.get('account_number')
+        cvv = request.POST.get('cvv')
+        expiry_date = request.POST.get('expiry_date')
+        amount_paid = request.POST.get('amount_paid')
 
-            # Update the case's payment status to 'Paid'
-            case.payment_approval = 'Paid'
-            case.save()
+        # Store payment data in the Payment model (create one if needed)
+        # You can also perform any validation or save other details as needed.
+        payment = Payment.objects.create(
+            case=case,  # Link the payment to the case
+            account_number=account_number,
+            cvv=cvv,
+            expiry_date=expiry_date,
+            amount_paid=amount_paid,
+            payment_date=datetime.now(),
+            user = request.user
+        )
 
-            return redirect('payment_confirmation')  # Redirect to a payment confirmation page
-    else:
-        form = PaymentForm()
+        # Update the payment approval status of the case
+        case.payment_approval = 'Paid'
+        case.save()
 
-    return render(request, 'payment_page.html', {'form': form, 'case': case})
+        # Redirect to a confirmation page or back to the case list page
+        return redirect('clientcaselist')  # You can replace with the appropriate URL
+
+    return render(request, 'payment_page.html', {'case': case})

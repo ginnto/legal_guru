@@ -14,10 +14,16 @@ class FeedbackForm(forms.ModelForm):
 
 
 
+
 class PaymentForm(forms.ModelForm):
     class Meta:
         model = Payment
-        fields = ['case', 'account_number', 'cvv', 'expiry_date', 'amount_paid']
-        widgets = {
-            'expiry_date': forms.DateInput(attrs={'type': 'date'}),
-        }
+        fields = ['account_number', 'cvv', 'expiry_date', 'amount_paid']
+
+    def clean_account_number(self):
+        # Add validation for account number if needed
+        pass
+
+    def clean_cvv(self):
+        # Add validation for CVV if needed
+        pass
