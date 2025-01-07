@@ -1,10 +1,56 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "advbase.html" %}
+{% load static %}
+{% load template_filters %}
 
-</body>
-</html>
+{% block content %}
+<div class="container py-5">
+    <div class="d-flex flex-column text-center mb-5">
+        <h4 class="text-primary font-weight-bold">Chat List</h4>
+        <h4 class="display-4 font-weight-bold">Manage Your Chats</h4>
+    </div>
+    <form method="POST">
+        {% csrf_token %}
+        <table class="table table-striped table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th>#</th>
+                    <th>Chat Between</th>
+                    <th>Last Message</th>
+                    <th>Message Date</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Static data for the chat list -->
+                <tr>
+                    <td>1</td>
+                    <td>John Doe and Jane Smith</td>
+                    <td>Hello, how are you?</td>
+                    <td>2025-01-08</td>
+                    <td>
+                        <a href="/chats/1/" class="btn btn-info btn-sm">View Chat</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Alice Brown and Bob Green</td>
+                    <td>I'm good, thank you!</td>
+                    <td>2025-01-07</td>
+                    <td>
+                        <a href="/chats/2/" class="btn btn-info btn-sm">View Chat</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Charlie White and Dana Black</td>
+                    <td>What are you up to?</td>
+                    <td>2025-01-06</td>
+                    <td>
+                        <a href="/chats/3/" class="btn btn-info btn-sm">View Chat</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+</div>
+{% endblock %}

@@ -1,10 +1,33 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "advbase.html" %}
+{% load static %}
+{% load template_filters %}
 
-</body>
-</html>
+{% block content %}
+<div class="container py-5">
+    <div class="d-flex flex-column text-center mb-5">
+        <h4 class="text-primary font-weight-bold">Chat Details</h4>
+        <h4 class="display-4 font-weight-bold">Chat with John Doe and Jane Smith</h4>
+    </div>
+
+    <!-- Display chat messages -->
+    <div id="messages" class="mb-4">
+        <div class="message">
+            <p><strong>John Doe:</strong> Hello, how are you?</p>
+        </div>
+        <div class="message">
+            <p><strong>Jane Smith:</strong> I'm good, thank you! How about you?</p>
+        </div>
+        <div class="message">
+            <p><strong>John Doe:</strong> I'm doing well, thanks for asking!</p>
+        </div>
+    </div>
+
+    <!-- Form to send a new message -->
+    <h3>Send a Message</h3>
+    <form method="POST">
+        {% csrf_token %}
+        <textarea name="content" placeholder="Type your message here..." required class="form-control mb-3" rows="4"></textarea><br>
+        <button type="submit" class="btn btn-primary">Send</button>
+    </form>
+</div>
+{% endblock %}

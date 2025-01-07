@@ -4,4 +4,6 @@ from . import views
 urlpatterns = [
     path('',views.index,name='index'),   #urladdressname , function call, path name
     path('logout',views.logout,name='logout'),
+    path('chats', views.chat_list, name='chat_list'),
+    path('chats', views.chat_detail, name='chat_detail'),
 ]
