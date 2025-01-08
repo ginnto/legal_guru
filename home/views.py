@@ -43,6 +43,26 @@ def chat_list(request):
     chats = ChatMessage.objects.filter(sender=request.user)
     return render(request, 'chat_list.html', {'chats': chats})
 
+
+def advchat_list(request):
+    chats = ChatMessage.objects.filter(receiver=request.user)
+    if request.method == "POST":
+        chat_id = request.POST.get("chat_id")
+        message_content = request.POST.get("message")
+        if chat_id and message_content:
+            # Fetch the chat object or return a 404 if not found
+            chat = get_object_or_404(ChatMessage, id=chat_id)
+
+            chat.reply_to = message_content
+            chat.save()
+
+            # Optionally, add a success message or redirect
+            messages.success(request, "Reply sent successfully.")
+        else:
+            # Optionally, add an error message if the input is incomplete
+            messages.error(request, "Failed to send reply. Please ensure all fields are filled.")
+    return render(request, 'advchatlist.html', {'chats': chats})
+
 def logout(request):
     auth.logout(request)
     return redirect('/')

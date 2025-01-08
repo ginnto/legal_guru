@@ -99,11 +99,11 @@ def clientlogin(request):
             except ClientRegistration.DoesNotExist:
                 # ClientRegistration not found, handle it (e.g., show error)
                 messages.error(request, "Client registration not found.")
-                return redirect('userlogin')
+                return redirect('clientlogin')
         else:
             # Invalid email or password
             messages.error(request, "Invalid email or password.")
-            return redirect('userlogin')
+            return redirect('clientlogin')
     else:
         return render(request, 'client_login.html')
 

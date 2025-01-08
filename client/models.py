@@ -36,7 +36,7 @@ class ChatMessage(models.Model):
     sender = models.ForeignKey(User, on_delete=models.CASCADE, related_name='sent_chat_messages')
     receiver = models.ForeignKey(User, on_delete=models.CASCADE, related_name='received_chat_messages')
     content = models.TextField()
-    reply_to = models.ForeignKey('self', null=True, blank=True, on_delete=models.SET_NULL, related_name='replies')
+    reply_to = models.TextField( null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

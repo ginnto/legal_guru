@@ -78,8 +78,17 @@
         }
     </style>
 
+
+
     <div class="container">
         <h2>Login as a Client</h2>
+
+        {% if messages %}
+        {% for message in messages|slice:":-1" %}
+              <h4 style="color:red"> {{ message }} </h4>
+
+        {% endfor %}
+{% endif %}
         <form action="{% url 'clientlogin' %}" method="post">
             {% csrf_token %}
 
