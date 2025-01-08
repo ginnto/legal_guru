@@ -6,20 +6,19 @@
 <div class="container py-5">
     <div class="d-flex flex-column text-center mb-5">
         <h4 class="text-primary font-weight-bold">Chat Details</h4>
-        <h4 class="display-4 font-weight-bold">Chat with John Doe and Jane Smith</h4>
+        <h4 class="display-4 font-weight-bold">Chat with {{ chat.participants.exclude(id=request.user.id).first.username }}</h4>
     </div>
 
     <!-- Display chat messages -->
     <div id="messages" class="mb-4">
-        <div class="message">
-            <p><strong>John Doe:</strong> Hello, how are you?</p>
+        {% for message in messages %}
+        <div class="message {% if message.sender == request.user %}text-right{% endif %}">
+            <p><strong>{{ message.sender.username }}:</strong> {{ message.content }}</p>
+            <small class="text-muted">{{ message.timestamp }}</small>
         </div>
-        <div class="message">
-            <p><strong>Jane Smith:</strong> I'm good, thank you! How about you?</p>
-        </div>
-        <div class="message">
-            <p><strong>John Doe:</strong> I'm doing well, thanks for asking!</p>
-        </div>
+        {% empty %}
+        <p>No messages yet. Start the conversation!</p>
+        {% endfor %}
     </div>
 
     <!-- Form to send a new message -->
