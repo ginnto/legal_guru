@@ -1,84 +1,115 @@
 
-# Legal Guru
 
-Description
-Legal Guru is a comprehensive platform designed to simplify legal management and provide users with accessible tools for legal processes. Whether you're a legal professional or an individual seeking guidance, Legal Guru offers features to streamline document management, case tracking, and more.
-Table of Contents
+# **📜 Legal Guru**  
 
-    Features
-    Installation
-    Usage
-    Technologies Used
-    Contributing
-    License
+**Legal Guru** is a comprehensive platform designed to simplify legal management and provide users with accessible tools for legal processes. Whether you're a legal professional or an individual seeking guidance, Legal Guru offers features to streamline document management, case tracking, and more.  
 
-Features
+---
 
-    Easy case and client management.
-    Document automation and storage.
-    Legal reminders and task tracking.
-    Secure authentication and role-based access control.
-    Intuitive user interface for professionals and individuals.
+## **📑 Table of Contents**  
+- [✨ Features](#-features)  
+- [⚙️ Installation](#️-installation)  
+- [🚀 Usage](#-usage)  
+- [💻 Technologies Used](#-technologies-used)  
+- [🤝 Contributing](#-contributing)  
+- [📄 License](#-license)  
 
-Installation
+---
 
-    Clone the repository:
+## **✨ Features**  
+✅ Easy case and client management.  
+✅ Document automation and secure storage.  
+✅ Legal reminders and task tracking.  
+✅ Secure authentication and role-based access control.  
+✅ Intuitive user interface for professionals and individuals.  
 
-git clone https://github.com/username/leagal-guru.git
+---
 
-Navigate to the project directory:
+## **⚙️ Installation**  
 
-cd leagal-guru
+Follow these steps to set up Legal Guru on your local machine:  
 
-Install the required dependencies:
+1. **Clone the repository**:  
+   ```bash  
+   git clone https://github.com/username/leagal-guru.git  
+   ```  
 
-pip install -r requirements.txt
+2. **Navigate to the project directory**:  
+   ```bash  
+   cd leagal-guru  
+   ```  
 
-Apply migrations:
+3. **Install the required dependencies**:  
+   ```bash  
+   pip install -r requirements.txt  
+   ```  
 
-python manage.py migrate
+4. **Apply migrations**:  
+   ```bash  
+   python manage.py migrate  
+   ```  
 
-Start the development server:
+5. **Start the development server**:  
+   ```bash  
+   python manage.py runserver  
+   ```  
 
-    python manage.py runserver
+---
 
-Usage
+## **🚀 Usage**  
 
-After starting the server, open your browser and navigate to:
+1. Start the server and open your browser at:  
+   ```  
+   http://127.0.0.1:8000  
+   ```  
 
-http://127.0.0.1:8000  
+2. **Register** or **log in** to your account.  
+3. Explore features such as:  
+   - Case management.  
+   - Document uploads.  
+   - Task tracking and reminders.  
 
-    Register or log in to your account.
-    Explore features such as case management, document uploads, and task tracking.
+---
 
-Technologies Used
+## **💻 Technologies Used**  
 
-    Python
-    Django
-    HTML/CSS
-    JavaScript
-    SQLite
-    Bootstrap
+- **Programming Language**: Python  
+- **Web Framework**: Django  
+- **Frontend**: HTML, CSS, JavaScript  
+- **Database**: SQLite  
+- **Styling**: Bootstrap  
 
-Contributing
+---
 
-We welcome contributions to improve Legal Guru! If you'd like to contribute, please:
+## **🤝 Contributing**  
 
-    Fork the repository.
-    Create a new branch:
+We ❤️ contributions! If you want to improve Legal Guru:  
 
-git checkout -b feature-name
+1. **Fork the repository**.  
+2. Create a new branch:  
+   ```bash  
+   git checkout -b feature-name  
+   ```  
 
-Make your changes and commit them:
+3. Make your changes and commit them:  
+   ```bash  
+   git commit -m "Describe your changes"  
+   ```  
 
-git commit -m "Describe your changes"
+4. Push to the branch:  
+   ```bash  
+   git push origin feature-name  
+   ```  
 
-Push to the branch:
+5. Open a **Pull Request**.  
 
-    git push origin feature-name
+---
 
-    Open a pull request.
+## **📄 License**  
 
-License
+This project is licensed under the **MIT License**. See the [LICENSE](LICENSE) file for more details.  
 
-This project is licensed under the MIT License. See the LICENSE file for details.
+---
+
+### **🛠️ Let's build the future of legal management with Legal Guru!**  
+
