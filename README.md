@@ -4,7 +4,7 @@
 
 The Lawyer Management System is a web-based platform built with Django to help lawyers manage cases, clients, and payments effortlessly. Clients can request legal assistance, provide case details, and communicate directly with lawyers through the platform.
 🚀 Features
-📂 Current Modules
+## 📂 Current Modules
 
     Admin Module
         ✅ Approve or reject lawyer registrations.
@@ -20,13 +20,13 @@ The Lawyer Management System is a web-based platform built with Django to help l
         💸 Make payments after lawyer approval.
         🗨️ Chat with assigned lawyers for case updates.
 
-⚙️ Key Functionalities
+## ⚙️ Key Functionalities
 
     🔐 Secure Payment System: Clients can pay lawyers directly through the platform.
     📊 Case Management: Lawyers can efficiently manage multiple cases.
     🗨️ Integrated Chat: Ensures smooth communication between clients and lawyers.
 
-🖥️ Tech Stack
+## 🖥️ Tech Stack
 Technology	Purpose
 🐍 Django	Backend framework
 🌐 HTML/CSS/JS	Frontend development
@@ -64,7 +64,7 @@ Start the server:
     Access the application:
         🌐 Open: http://127.0.0.1:8000/
 
-🤝 Contributing
+## 🤝 Contributing
 
 We ❤️ contributions! Here’s how you can help:
 
@@ -83,12 +83,12 @@ Push to your branch:
 
     Create a pull request on the main repository.
 
-📜 License
+## 📜 License
 
 This project is licensed under the MIT License.
-📞 Contact
 
-Got questions or suggestions? Reach out to us:
+## 📞 **Contact**  
 
-    📧 Email: your-email@example.com
-    🌐 GitHub: Your GitHub Profile
+Got questions or suggestions? Reach out to us:  
+- 📧 **Email**: [click](mailto:ginto252@gmail.com)  
+- 🌐 **GitHub**: [GitHub Profile](https://github.com/ginnto)  
